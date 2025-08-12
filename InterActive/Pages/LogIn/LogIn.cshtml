@@ -1,0 +1,121 @@
+﻿@page
+@model FriendThingsFinder.Pages.LogIn.LogInModel
+@{
+}
+
+<head>
+    <style>
+        /* Facebook logo */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 40px;
+            font-weight: bold;
+            color: #1877f2;
+            margin-bottom: 20px;
+        }
+
+        /* The login box */
+        .login-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+
+       /* Title inside the box */
+       .login-box h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+       }
+
+       /* Input fields */
+       .login-box input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Login button */
+        .login-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+       .login-btn:hover {
+            background-color: #166fe5;
+       }
+
+        /* Forgot password link */
+        .forgot {
+            display: block;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #1877f2;
+            text-decoration: none;
+        }
+
+        .forgot:hover {
+            text-decoration: underline;
+        }
+
+        /* Separator */
+        .separator {
+            border-top: 1px solid #ccc;
+            margin: 15px 0;
+        }
+
+        /* Create account button */
+        .create-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #42b72a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .create-btn:hover {
+            background-color: #36a420;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="text-align:center">
+        <h1 class="logo">Grove Runners</h1> 
+    </div>
+
+    <div class="container">
+        <div class="login-box">
+            <h2>Log Into Grove Runners</h2>
+            <h2 style="color:red">@Model.Message</h2>
+            <form method="post">
+                <input asp-for="Username" type="text" placeholder="Username">
+                <input asp-for="Password" type="password" placeholder="Password">
+                <button class="login-btn" type="submit" asp-page-handler="LogInAttempt">Log In</button>
+                <a asp-page="/Posts/Index" asp-page-handler="GeneralUser" asp-route-username = "general" class="forgot">Use Grove Runners Without Account</a>
+                <a asp-page="/LogInPages/LogIn" asp-page-handler="ForgotAccount" class="forgot">Forgot account?</a>
+                <div class="separator"></div>
+                <button class="create-btn" type="submit" asp-page-handler="NewUser">Create new account</button>
+            </form>
+        </div>
+    </div>
+</body>

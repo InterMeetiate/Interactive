@@ -3,16 +3,94 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - InterActive</title>
+    <title>@ViewData["Title"] - FriendThingsFinder</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/InterActive.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/FriendThingsFinder.styles.css" asp-append-version="true" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <script>
+        $(document).ready(function () {
+            $('#spanButton').click(function (event) {
+
+                const dropdown = $('.dropdown-content');
+
+                if (dropdown.hasClass('active')) {
+                    dropdown.removeClass('active');
+                }
+                else {
+                    dropdown.toggleClass('active');
+                }
+            })
+        });
+    </script>
+    <script>
+        function dropdownEvent(x) {
+            x.classList.toggle("change");
+        }
+    </script>
+
+    <style>
+        .dropdown-content {
+            display: block;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 0;
+            width: 175px;
+            height: 50px;
+            position: fixed;
+            top: -100px;
+            overflow-x: auto;
+            transition: 0.6s ease;
+            vertical-align: top;
+            left: 1487px;
+        }
+
+            .dropdown-content.active {
+                top: 55px;
+            }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+            .dropdown-content .menu {
+                width: 100%;
+                margin-top: 30px;
+            }
+
+            .dropdown-content .item {
+                position: relative;
+                cursor: pointer;
+            }
+
+        .arrow {
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+            transition: .9s;
+            transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+        }
+
+        .change .arrow {
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="z-index:2">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">InterActive</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index">FriendThingsFinder</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -26,10 +104,28 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
                     </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="nav-item">
+                            <a style="cursor:pointer" id="spanButton">
+                                <div class="container" onclick="dropdownEvent(this)">
+                                    @* not developed yet *@
+                                    @* <span>@ViewData["username"]&nbsp;</span> *@
+                                    <div class="arrow"></div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
     </header>
+    <div class="dropdown-content">
+        <div class="item">
+            <a class="nav-link text-dark" asp-area="" asp-page="/LogIn/LogIn" asp-route-logoutFlag=0>Log In</a>
+        </div>
+    </div>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -38,7 +134,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2025 - InterActive - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2025 - FriendThingsFinder - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
 
